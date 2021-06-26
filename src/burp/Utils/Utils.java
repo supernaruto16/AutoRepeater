@@ -234,6 +234,9 @@ public class Utils {
       // Check all occurrences
       if (matcher.find()) {
         int start = matcher.start();
+        if (matcher.groupCount() > 0) {
+          start = matcher.start(1);
+        }
         // Add every item between start of the last match and the current match
         for (int i = currentIndex; i < start; i++) {
           output.add(input[i]);
@@ -244,6 +247,9 @@ public class Utils {
         }
         // Skip over the body of the match
         currentIndex = matcher.end();
+        if (matcher.groupCount() > 0) {
+          currentIndex = matcher.end(1);
+        }
       } else {
         //
         return input;
@@ -278,6 +284,9 @@ public class Utils {
       // Check all occurrences
       while (matcher.find()) {
         int start = matcher.start();
+        if (matcher.groupCount() > 0) {
+          start = matcher.start(1);
+        }
         // Add every item between start of the last match and the current match
         for (int i = currentIndex; i < start; i++) {
           output.add(input[i]);
@@ -288,6 +297,9 @@ public class Utils {
         }
         // Skip over the body of the match
         currentIndex = matcher.end();
+        if (matcher.groupCount() > 0) {
+          currentIndex = matcher.end(1);
+        }
       }
       // Add everything after the last match
       for (int i = currentIndex; i < input.length; i++) {
